@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -82,13 +83,13 @@ const Form = () => {
         minimumOrderQuantity: 1
       };
 
-      // Get existing custom products from localStorage
-      const existingProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
+      // // Get existing custom products from localStorage
+      // const existingProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
       
-      // Add new product
-      const updatedProducts = [...existingProducts, newProduct];
-      localStorage.setItem('customProducts', JSON.stringify(updatedProducts));
-
+      // // Add new product
+      // const updatedProducts = [...existingProducts, newProduct];
+      // localStorage.setItem('customProducts', JSON.stringify(updatedProducts));
+      axios.post('https://bill-g-bd.vercel.app/api/products',newProduct);
       // Show success message
       alert(`Product "${newProduct.title}" added successfully!`);
       
