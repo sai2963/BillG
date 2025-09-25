@@ -11,7 +11,9 @@ const useSearchProducts = (target) => {
   }
 
   return products.filter((product) =>
-    product.title.toLowerCase().includes(target.toLowerCase())
+        product.title.toLowerCase().includes(target.toLowerCase()) ||
+        product.category?.toLowerCase().includes(target.toLowerCase()) ||
+        product.brand?.toLowerCase().includes(target.toLowerCase())
   );
 };
 

@@ -38,17 +38,17 @@ const Form = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (name.trim()) {
+    if (!name.trim()) {
       newErrors.name = "Product name is required";
     }
 
-    if (price.trim()) {
+    if (!price.trim()) {
       newErrors.price = "Price is required";
     } else if (isNaN(price) || parseFloat(price) <= 0) {
       newErrors.price = "Price must be a valid positive number";
     }
 
-    if (quantity.trim()) {
+    if (!quantity.trim()) {
       newErrors.quantity = "Quantity is required";
     } else if (isNaN(quantity) || parseInt(quantity) <= 0) {
       newErrors.quantity = "Quantity must be a positive number";
