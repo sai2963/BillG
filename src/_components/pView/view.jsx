@@ -24,13 +24,14 @@ const View = () => {
   }, [apiProducts]);
 
   // Filter products based on search term
+  const searchedProducts = useSearchProducts(searchTerm);
   const filteredProducts = useMemo(() => {
     if (!searchTerm.trim()) {
       return products;
     } else {
-      return useSearchProducts(searchTerm);
+      return searchedProducts;
     }
-  }, [products, searchTerm]);
+  }, [products, searchTerm, searchedProducts]);
 
   if (loading) {
     return (
