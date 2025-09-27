@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Summary = ({
   selectedProducts,
   discount,
@@ -14,28 +15,41 @@ const Summary = ({
   const discountAmount = totalAmount * (parseInt(discount) / 100);
   const finalPrice = totalAmount - discountAmount;
 
-  const handleGenerateBill = () => {
+  const handleGenerateBill = async () => {
     if (selectedProducts.length === 0) return;
 
-    // Create bill data
-    const billData = {
-      id: Date.now(), // Simple ID generation
+    const BillData = {
+      id: Date.now(),
       customerName,
       mobileNumber,
-      products: selectedProducts,
-      discount,
-      totalAmount,
-      discountAmount,
-      finalPrice,
-      date: new Date().toLocaleDateString(),
-      time: new Date().toLocaleTimeString(),
+      items: selectedProducts.map((p) => ({
+        productId: p.id, // backend expects productId
+        quantity: p.quantity, // backend expects quantity
+      })),
+      discountPercent: parseInt(discount) || 0, // backend expects number
+      paymentMethod: "CASH",
+      paymentStatus: "PENDING",
     };
 
+    try {
+      const res = await axios.post(
+        "https://bill-g-bd.vercel.app/api/bills",
+        BillData
+      );
+      console.log("Bill created:", res.data);
+      navigate(`/bill/${BillData.id}`);
+    } catch (error) {
+      console.error(
+        "Error creating bill:",
+        error.response?.data || error.message
+      );
+    }
+
+    // Create bill data
+
     // Store bill data in localStorage (you can use a better state management solution)
-    localStorage.setItem(`bill_${billData.id}`, JSON.stringify(billData));
 
     // Navigate to bill display page
-    navigate(`/bill/${billData.id}`);
   };
   return (
     <>

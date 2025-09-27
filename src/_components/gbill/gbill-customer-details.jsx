@@ -5,21 +5,21 @@ const BillCustomerDetails = ({billData}) => {
         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
           Customer Details
         </h2>
-        <div className="space-y-2 text-sm sm:text-base">
-          <div className="flex justify-between">
+        <div className="space-y-2 text-sm sm:text-base flex gap-5">
+          <div className="flex gap-3">
             <span className="font-medium text-gray-600 dark:text-gray-300">
-              Name:
+              Name  :
             </span>
             <span className="font-semibold text-gray-900 dark:text-white">
-              {billData.customerName}
+              {billData.customer.name.toUpperCase()}
             </span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex gap-3">
             <span className="font-medium text-gray-600 dark:text-gray-300">
               Phone:
             </span>
             <span className="font-semibold text-gray-900 dark:text-white">
-              {billData.mobileNumber}
+              {billData.customer.mobileNumber}
             </span>
           </div>
         </div>

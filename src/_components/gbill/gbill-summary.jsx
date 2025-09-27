@@ -30,7 +30,7 @@ const BillSummary = ({billData,handleNewBill}) => {
               Final Amount:
             </span>
             <span className="text-xl font-extrabold text-green-600 dark:text-green-400">
-              ₹{billData.finalPrice.toFixed(2)}
+              ₹{billData.finalAmount.toFixed(2)}
             </span>
           </div>
 

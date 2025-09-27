@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import BillHeader from "./billHeader";
-import BillCustomerDetails from "./billCustomerDetails";
-import ProductsTable from "./productsTable";
-import BillSummary from "./billSummary";
-import BillFooter from "./billFooter";
-import BillLoading from "./loading";
-import BillNotFount from "./not-found";
+import BillHeader from "./gbill-header";
+import BillCustomerDetails from "./gbill-customer-details";
+import ProductsTable from "./gbill-products-table";
+import BillSummary from "./gbill-summary";
+import BillFooter from "./gbill-footer";
+import BillLoading from "./gbill-loading";
+import BillNotFound from "./gbill-not-found";
+import axios from "axios";
 
 const BillD = () => {
   const { billId } = useParams();
@@ -15,20 +16,36 @@ const BillD = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch bill data from localStorage
-    const storedBill = localStorage.getItem(`bill_${billId}`);
-    if (storedBill) {
-      setBillData(JSON.parse(storedBill));
-    } else {
-      // Redirect to home if bill not found
-      navigate("/");
-    }
-    setLoading(false);
+    const fetchBill = async () => {
+      try {
+        // Make API request
+        const res = await axios.get(
+          `https://bill-g-bd.vercel.app/api/bills/${billId}`
+        );
+
+        // Extract bill data
+        const bill = res.data.bill;
+        
+
+        if (bill) {
+          setBillData(bill);
+        } else {
+          // Redirect if bill not found
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error fetching bill:", error);
+        navigate("/"); // optional redirect on error
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBill();
   }, [billId, navigate]);
 
   const handleNewBill = () => {
     navigate("/");
-    localStorage.clear();
   };
 
   if (loading) {
@@ -42,7 +59,7 @@ const BillD = () => {
   if (!billData) {
     return (
       <>
-        <BillNotFount handleNewBill={handleNewBill} />
+        <BillNotFound handleNewBill={handleNewBill} />
       </>
     );
   }

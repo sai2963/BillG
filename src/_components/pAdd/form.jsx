@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProductName from "./productName";
-import ProductPrice from "./productPrice";
-import ProductQuantity from "./productQuantity";
-import FormButtons from "./formButtons";
-import Footer from "./footer";
-import Header from "./header";
+import ProductName from "./add-product-name";
+import ProductPrice from "./add-product-price";
+import ProductQuantity from "./add-product-quantity";
+import FormButtons from "./add-form-buttons";
+import Footer from "./add-footer";
+import Header from "./add-header";
+import ProductCategory from "./add-product-category";
+import ProductBrand from "./add-product-brand";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -14,8 +16,10 @@ const Form = () => {
     name: "",
     price: "",
     quantity: "",
+    brand: "",
+    category:"",
   });
-  const { name, price, quantity } = formData;
+  const { name, price, quantity ,brand , category } = formData;
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -71,11 +75,11 @@ const Form = () => {
       // Create product object
       const newProduct = {
         id: Date.now(), // Simple ID generation
-        title: formData.name.trim(),
-        price: parseFloat(formData.price),
-        quantity: parseInt(formData.quantity),
-        category: "Custom Product",
-        brand: "Custom",
+        title: name.trim(),
+        price: parseFloat(price),
+        quantity: parseInt(quantity),
+        category: category.trim(),
+        brand: brand.trim(),
         description: `Custom product: ${formData.name.trim()}`,
         thumbnail: "https://via.placeholder.com/150",
         images: ["https://via.placeholder.com/150"],
@@ -105,6 +109,8 @@ const Form = () => {
         name: "",
         price: "",
         quantity: "",
+        brand:"",
+        category:""
       });
 
       // Optional: Navigate to products view or stay on form
@@ -151,6 +157,18 @@ const Form = () => {
           <ProductQuantity
             handleChange={handleChange}
             quantity={quantity}
+            loading={loading}
+            errors={errors}
+          />
+          <ProductCategory
+            handleChange={handleChange}
+            category={category}
+            loading={loading}
+            errors={errors}
+          />
+          <ProductBrand
+            handleChange={handleChange}
+            brand={brand}
             loading={loading}
             errors={errors}
           />

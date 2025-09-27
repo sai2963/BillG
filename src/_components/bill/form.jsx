@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import useFetchProducts from "./useFetchProducts";
 import useSearchProducts from "./useSearchProd";
-import ProductsList from "./productsList";
-import CustomerDetails from "./customerDetails";
-import Summary from "./summary";
+import ProductsList from "./bill-products-list";
+import CustomerDetails from "./bill-customer-details";
+import Summary from "./bill-summary";
 
 const Bill_Form = () => {
   const { loading, error } = useFetchProducts();

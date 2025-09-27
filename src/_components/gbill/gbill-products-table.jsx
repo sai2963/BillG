@@ -13,17 +13,17 @@ const ProductsTable = ({billData})=>{
               </tr>
             </thead>
             <tbody>
-              {billData.products.map((product, index) => (
+              {billData.items.map((product, index) => (
                 <tr
                   key={product.id}
                   className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
                 >
                   <td className="px-6 py-3">{index + 1}</td>
-                  <td className="px-6 py-3">{product.title}</td>
+                  <td className="px-6 py-3">{product.product.title}</td>
                   <td className="px-6 py-3">{product.quantity}</td>
-                  <td className="px-6 py-3">₹{product.price.toFixed(2)}</td>
+                  <td className="px-6 py-3">₹{product.product.price.toFixed(2)}</td>
                   <td className="px-6 py-3">
-                    ₹{(product.price * product.quantity).toFixed(2)}
+                    ₹{(product.product.price * product.quantity).toFixed(2)}
                   </td>
                 </tr>
               ))}

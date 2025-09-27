@@ -5,6 +5,7 @@ import BillD from './_components/gbill/billD';
 import Header from './_components/header';
 import Form from './_components/pAdd/form';
 import View from './_components/pView/view';
+import BillHistory from './_components/billH/bill-history';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         {/* Product Management */}
         <Route path="/products/add" element={<Form/>} />
         <Route path="/products/view" element={<View/>} />
+
+        <Route path="/billh" element={<BillHistory/>} />
         
         {/* Fallback route */}
         <Route path="*" element={<Bill_Form />} />
