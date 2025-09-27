@@ -3,7 +3,7 @@ import axios from "axios";
 
 const useFetchBills = () => {
   const [state, setState] = useState([]);
-  const [loading, setLoading] = useState(true); // Start with true
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
 
   useEffect(() => {

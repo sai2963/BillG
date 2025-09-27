@@ -25,7 +25,6 @@ const Bill_Form = () => {
     const existingProduct = selectedProducts.find((p) => p.id === product.id);
 
     if (existingProduct) {
-      // If product exists, increase quantity
       setSelectedProducts((prev) =>
         prev.map((p) =>
           p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
@@ -35,21 +34,16 @@ const Bill_Form = () => {
       setSelectedProducts((prev) => [...prev, { ...product, quantity: 1 }]);
     }
 
-    // Clear input after selection
     setInputValue("");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your submit logic here
   };
-
-  // Calculate totals
 
   return (
     <>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-6">
         <div className="mx-auto max-w-5xl space-y-10">
-          {/* Page Title */}
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               Create New Bill
@@ -59,7 +53,6 @@ const Bill_Form = () => {
             </p>
           </div>
 
-          {/* Product Search Section */}
           <form onSubmit={handleSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -97,8 +90,6 @@ const Bill_Form = () => {
             </div>
           </form>
 
-          {/* Customer Details Form */}
-
           <CustomerDetails
             customerName={customerName}
             setCustomerName={setCustomerName}
@@ -107,14 +98,13 @@ const Bill_Form = () => {
             discount={discount}
             setDiscount={setDiscount}
           />
-          {/* Table Section */}
 
           <ProductsList
             selectedProducts={selectedProducts}
             setSelectedProducts={setSelectedProducts}
             discount={discount}
           />
-          {/* Summary Section */}
+
           <Summary
             selectedProducts={selectedProducts}
             discount={discount}

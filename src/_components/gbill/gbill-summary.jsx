@@ -1,4 +1,4 @@
-const BillSummary = ({billData,handleNewBill}) => {
+const BillSummary = ({ billData, handleNewBill }) => {
   const handlePrint = () => {
     window.print();
   };
@@ -34,7 +34,6 @@ const BillSummary = ({billData,handleNewBill}) => {
             </span>
           </div>
 
-          {/* Action Buttons */}
           <div className="pt-4 flex gap-4 justify-end print:hidden">
             <button
               onClick={handleNewBill}

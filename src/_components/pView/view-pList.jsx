@@ -18,7 +18,6 @@ const ViewPList = ({ filteredProducts, setProducts, searchTerm }) => {
     <>
       <div className="overflow-x-auto rounded-2xl bg-white dark:bg-gray-800 shadow-md">
         <table className="min-w-full text-sm text-gray-700 dark:text-gray-200">
-          {/* Table Head */}
           <thead className="bg-gray-100 text-left text-gray-600 dark:bg-gray-700 dark:text-gray-300">
             <tr>
               <th className="px-6 py-3 font-medium">SNO</th>
@@ -32,7 +31,6 @@ const ViewPList = ({ filteredProducts, setProducts, searchTerm }) => {
             </tr>
           </thead>
 
-          {/* Table Body */}
           <tbody>
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product, index) => (

@@ -18,24 +18,20 @@ const BillD = () => {
   useEffect(() => {
     const fetchBill = async () => {
       try {
-        // Make API request
         const res = await axios.get(
           `https://bill-g-bd.vercel.app/api/bills/${billId}`
         );
 
-        // Extract bill data
         const bill = res.data.bill;
-        
 
         if (bill) {
           setBillData(bill);
         } else {
-          // Redirect if bill not found
           navigate("/");
         }
       } catch (error) {
         console.error("Error fetching bill:", error);
-        navigate("/"); // optional redirect on error
+        navigate("/");
       } finally {
         setLoading(false);
       }

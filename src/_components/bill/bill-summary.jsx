@@ -23,10 +23,10 @@ const Summary = ({
       customerName,
       mobileNumber,
       items: selectedProducts.map((p) => ({
-        productId: p.id, // backend expects productId
-        quantity: p.quantity, // backend expects quantity
+        productId: p.id, 
+        quantity: p.quantity, 
       })),
-      discountPercent: parseInt(discount) || 0, // backend expects number
+      discountPercent: parseInt(discount) || 0, 
       paymentMethod: "CASH",
       paymentStatus: "PENDING",
     };
@@ -45,11 +45,7 @@ const Summary = ({
       );
     }
 
-    // Create bill data
-
-    // Store bill data in localStorage (you can use a better state management solution)
-
-    // Navigate to bill display page
+    
   };
   return (
     <>
@@ -83,7 +79,7 @@ const Summary = ({
             </span>
           </div>
 
-          {/* Generate Bill Button */}
+          
           <div className="pt-4 flex justify-end">
             <button
               onClick={handleGenerateBill}

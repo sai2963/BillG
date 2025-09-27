@@ -16,14 +16,12 @@ const View = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Combine API products and custom products
   useEffect(() => {
     if (apiProducts && products.length === 0) {
       setProducts(apiProducts);
     }
   }, [apiProducts]);
 
-  // Filter products based on search term
   const searchedProducts = useSearchProducts(searchTerm);
   const filteredProducts = useMemo(() => {
     if (!searchTerm.trim()) {

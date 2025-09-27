@@ -15,9 +15,6 @@ const BillHistory = () => {
     }
   }, [state]);
 
-  //  console.log(bills);
-
-  // Group bills by date
   const groupBillsByDate = () => {
     const grouped = {};
     bills.forEach((bill) => {
@@ -32,7 +29,6 @@ const BillHistory = () => {
     return grouped;
   };
 
-  // Format time
   const formatTime = (dateString) => {
     return new Date(dateString).toLocaleTimeString();
   };
@@ -40,7 +36,7 @@ const BillHistory = () => {
   const handleNewBill = () => {
     navigate("/");
   };
-  // Format currency
+
   const formatMoney = (amount) => {
     return `₹${amount?.toLocaleString() || 0}`;
   };
@@ -56,7 +52,7 @@ const BillHistory = () => {
   if (error) {
     return (
       <>
-        <BillNotFound handleNewBill={handleNewBill}/>
+        <BillNotFound handleNewBill={handleNewBill} />
       </>
     );
   }
@@ -71,7 +67,7 @@ const BillHistory = () => {
         <div className="text-center text-gray-500 py-8">No bills found</div>
       ) : (
         Object.keys(billsByDate)
-          .sort((a, b) => new Date(b) - new Date(a)) // Latest first
+          .sort((a, b) => new Date(b) - new Date(a))
           .map((date) => (
             <div key={date} className="mb-8">
               {/* Date Header */}
