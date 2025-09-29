@@ -17,9 +17,9 @@ const Form = () => {
     price: "",
     quantity: "",
     brand: "",
-    category:"",
+    category: "",
   });
-  const { name, price, quantity ,brand , category } = formData;
+  const { name, price, quantity, brand, category } = formData;
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -30,7 +30,6 @@ const Form = () => {
       [name]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -72,9 +71,8 @@ const Form = () => {
     setLoading(true);
 
     try {
-      // Create product object
       const newProduct = {
-        id: Date.now(), // Simple ID generation
+        id: Date.now(),
         title: name.trim(),
         price: parseFloat(price),
         quantity: parseInt(quantity),
@@ -94,27 +92,17 @@ const Form = () => {
         minimumOrderQuantity: 1,
       };
 
-      // // Get existing custom products from localStorage
-      // const existingProducts = JSON.parse(localStorage.getItem('customProducts') || '[]');
-
-      // // Add new product
-      // const updatedProducts = [...existingProducts, newProduct];
-      // localStorage.setItem('customProducts', JSON.stringify(updatedProducts));
       axios.post("https://bill-g-bd.vercel.app/api/products", newProduct);
-      // Show success message
+
       alert(`Product "${newProduct.title}" added successfully!`);
 
-      // Reset form
       setFormData({
         name: "",
         price: "",
         quantity: "",
-        brand:"",
-        category:""
+        brand: "",
+        category: "",
       });
-
-      // Optional: Navigate to products view or stay on form
-      // navigate('/products/view');
     } catch (error) {
       console.error("Error adding product:", error);
       alert("Failed to add product. Please try again.");
@@ -123,20 +111,18 @@ const Form = () => {
     }
   };
 
-  
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md space-y-6 rounded-2xl bg-white dark:bg-gray-800 p-8 shadow-lg"
       >
-        {/* Title */}
-        <Header/>
+        
+        <Header />
 
-        {/* Inputs */}
+       
         <div className="space-y-4">
-          {/* Product Name */}
+         
 
           <ProductName
             handleChange={handleChange}
@@ -174,11 +160,11 @@ const Form = () => {
           />
         </div>
 
-        {/* Buttons */}
-        <FormButtons loading={loading}/>
+        
+        <FormButtons loading={loading} />
 
-        {/* Info Text */}
-        <Footer/>
+        
+        <Footer />
       </form>
     </div>
   );

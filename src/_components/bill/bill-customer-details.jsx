@@ -2,11 +2,9 @@ import { useState } from "react";
 
 const CustomerDetails = ({
   customerName,
-  setCustomerName,
   mobileNumber,
-  setMobileNumber,
   discount,
-  setDiscount,
+  inputHandleChange,
 }) => {
   return (
     <>
@@ -22,8 +20,9 @@ const CustomerDetails = ({
             <input
               type="text"
               placeholder="Enter customer name"
+              name="customerName"
               value={customerName}
-              onChange={(e) => setCustomerName(e.target.value)}
+              onChange={inputHandleChange}
               required
               className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
             />
@@ -35,8 +34,9 @@ const CustomerDetails = ({
             <input
               type="tel"
               placeholder="Enter mobile number"
+              name="mobileNumber"
               value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
+              onChange={inputHandleChange}
               required
               className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
             />
@@ -48,7 +48,7 @@ const CustomerDetails = ({
             <select
               name="discount"
               value={discount}
-              onChange={(e) => setDiscount(e.target.value)}
+              onChange={inputHandleChange}
               className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
             >
               <option value="0%">No Discount</option>

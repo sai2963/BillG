@@ -10,15 +10,27 @@ const Bill_Form = () => {
   const { loading, error } = useFetchProducts();
   const [inputValue, setInputValue] = useState("");
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [customerName, setCustomerName] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [discount, setDiscount] = useState("5%");
+  const [formData, setFormData] = useState({
+    customerName: "",
+    mobileNumber: "",
+    discount: "5%",
+  });
+  const { customerName, mobileNumber, discount } = formData;
+  // const [customerName, setCustomerName] = useState("");
+  // const [mobileNumber, setMobileNumber] = useState("");
+  // const [discount, setDiscount] = useState("5%");
 
   const handleChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
   };
-
+  const inputHandleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   const filterProducts = useSearchProducts(inputValue);
 
   const handleProductSelect = (product) => {
@@ -92,11 +104,9 @@ const Bill_Form = () => {
 
           <CustomerDetails
             customerName={customerName}
-            setCustomerName={setCustomerName}
             mobileNumber={mobileNumber}
-            setMobileNumber={setMobileNumber}
             discount={discount}
-            setDiscount={setDiscount}
+            inputHandleChange={inputHandleChange}
           />
 
           <ProductsList

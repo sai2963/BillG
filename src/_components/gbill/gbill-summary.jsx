@@ -19,7 +19,7 @@ const BillSummary = ({ billData, handleNewBill }) => {
           </div>
           <div className="flex justify-between">
             <span className="font-medium text-gray-600 dark:text-gray-300">
-              Discount ({billData.discount}):
+              Discount ({billData.discountPercent}%):
             </span>
             <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
               -₹{billData.discountAmount.toFixed(2)}
