@@ -33,7 +33,7 @@ const Summary = ({
 
     try {
       const res = await axios.post(
-        "https://bill-g-bd.vercel.app/api/bills",
+        `${import.meta.env.VITE_API}/api/bills`,
         BillData
       );
       console.log("Bill created:", res.data);

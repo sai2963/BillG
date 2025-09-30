@@ -92,7 +92,7 @@ const Form = () => {
         minimumOrderQuantity: 1,
       };
 
-      axios.post("https://bill-g-bd.vercel.app/api/products", newProduct);
+      axios.post(`${import.meta.env.VITE_API}/api/products`, newProduct);
 
       alert(`Product "${newProduct.title}" added successfully!`);
 

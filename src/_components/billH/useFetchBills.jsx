@@ -11,7 +11,7 @@ const useFetchBills = () => {
       try {
         setLoading(true);
         setError(null);
-        const res = await axios.get("https://bill-g-bd.vercel.app/api/bills");
+        const res = await axios.get(`${import.meta.env.VITE_API}/api/bills`);
         if (res.status === 200 || res.status === 201) {
           console.log("Data Fetched Successfully");
           setState(res.data.bills);

@@ -1,7 +1,10 @@
-const BillNotFound = ({handleNewBill})=>{
-    return(
-        <>
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-6 flex items-center justify-center">
+const BillNotFound = () => {
+  const handleNewBill = () => {
+    navigate("/");
+  };
+  return (
+    <>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-10 px-6 flex items-center justify-center">
         <div className="text-center">
           <div className="text-xl text-red-600 mb-4">Bill not found</div>
           <button
@@ -12,7 +15,7 @@ const BillNotFound = ({handleNewBill})=>{
           </button>
         </div>
       </div>
-        </>
-    )
-}
+    </>
+  );
+};
 export default BillNotFound;

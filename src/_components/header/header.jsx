@@ -40,9 +40,10 @@ const Header = () => {
           </div>
         </div>
 
+
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700 flex-col gap-5 ">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700 flex-col  ">
               <div>
                 <CreateBill
                   isActive={isActive}
