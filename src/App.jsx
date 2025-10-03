@@ -4,6 +4,7 @@ import {
   SignedOut,
   RedirectToSignIn,
   useAuth,
+  RedirectToSignUp,
 } from "@clerk/clerk-react";
 import "./App.css";
 import Landing from "./_components/landing";
@@ -23,7 +24,20 @@ function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Landing />} />
-        <Route path="/pricing" element={<BillGPricing />} />
+
+        <Route
+          path="/pricing"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/bill" replace />
+              </SignedIn>
+              <SignedOut>
+                <BillGPricing />
+              </SignedOut>
+            </>
+          }
+        />
 
         {/* Login route - redirect to /bill if already signed in */}
         <Route
@@ -34,7 +48,21 @@ function App() {
                 <Navigate to="/bill" replace />
               </SignedIn>
               <SignedOut>
-                <Navigate to="/login" replace />
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/bill" replace />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignUp />
               </SignedOut>
             </>
           }
