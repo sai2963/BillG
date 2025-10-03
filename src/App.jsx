@@ -6,13 +6,20 @@ import Header from "./_components/header/header";
 import Form from "./_components/pAdd/form";
 import View from "./_components/pView/view";
 import BillHistory from "./_components/billH/bill-history";
+import Landing from "./_components/landing";
+import BillGPricing from "./_components/pricing";
+import Authe from "./_components/authentication";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      
+      <Header/>
       <Routes>
-        <Route path="/" element={<Bill_Form />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/pricing" element={<BillGPricing />} />
+        <Route path="/auth" element={<Authe />} />
+        <Route path="/bill" element={<Bill_Form />} />
 
         <Route path="/bill/:billId" element={<BillD />} />
 

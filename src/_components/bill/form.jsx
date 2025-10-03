@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import useFetchProducts from "./useFetchProducts";
-import useSearchProducts from "./useSearchProd";
+
 import ProductsList from "./bill-products-list";
 import CustomerDetails from "./bill-customer-details";
 import Summary from "./bill-summary";
@@ -40,7 +40,6 @@ const Bill_Form = () => {
             setInputValue={setInputValue}
             loading={loading}
             error={error}
-            
           />
           <CustomerDetails
             customerName={customerName}
