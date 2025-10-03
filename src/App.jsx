@@ -1,34 +1,114 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import {
+  SignedIn,
+  SignedOut,
+  RedirectToSignIn,
+  useAuth,
+} from "@clerk/clerk-react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import Landing from "./_components/landing";
+import BillGPricing from "./_components/pricing";
+
 import Bill_Form from "./_components/bill/form";
 import BillD from "./_components/gbill/billD";
-import Header from "./_components/header/header";
 import Form from "./_components/pAdd/form";
 import View from "./_components/pView/view";
 import BillHistory from "./_components/billH/bill-history";
-import Landing from "./_components/landing";
-import BillGPricing from "./_components/pricing";
-import Authe from "./_components/authentication";
+import Header from "./_components/header/header";
 
 function App() {
   return (
     <div className="App">
-      
-      <Header/>
+      <Header />
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Landing />} />
         <Route path="/pricing" element={<BillGPricing />} />
-        <Route path="/auth" element={<Authe />} />
-        <Route path="/bill" element={<Bill_Form />} />
 
-        <Route path="/bill/:billId" element={<BillD />} />
+        {/* Login route - redirect to /bill if already signed in */}
+        <Route
+          path="/login"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/bill" replace />
+              </SignedIn>
+              <SignedOut>
+                <Navigate to="/login" replace />
+              </SignedOut>
+            </>
+          }
+        />
 
-        <Route path="/products/add" element={<Form />} />
-        <Route path="/products/view" element={<View />} />
+        {/* Protected routes */}
+        <Route
+          path="/bill"
+          element={
+            <>
+              <SignedIn>
+                <Bill_Form />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/bill/:billId"
+          element={
+            <>
+              <SignedIn>
+                <BillD />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/products/add"
+          element={
+            <>
+              <SignedIn>
+                <Form />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/products/view"
+          element={
+            <>
+              <SignedIn>
+                <View />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/billh"
+          element={
+            <>
+              <SignedIn>
+                <BillHistory />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
 
-        <Route path="/billh" element={<BillHistory />} />
-
-        <Route path="*" element={<Bill_Form />} />
+        {/* Catch-all redirect */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
